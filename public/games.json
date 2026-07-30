@@ -1,0 +1,11 @@
+{
+  "games": [
+    {
+      "id": "demo-01",
+      "title": "示例游戏",
+      "cover": "/assets/covers/demo-01.png",
+      "entry": "/games/demo-01/index.html",
+      "description": "占位元数据，步骤 0 尚未接入真游戏"
+    }
+  ]
+}
