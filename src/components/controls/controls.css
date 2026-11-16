@@ -1,0 +1,97 @@
+.control-hit {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+.control-face,
+.control-shadow {
+  transform-origin: center center;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.control-face--dpad,
+.control-shadow--dpad {
+  transition:
+    transform 160ms ease-out,
+    opacity 160ms ease-out;
+}
+
+/*
+ * 倾斜锚在「未按住」的一侧：按上 → 底边为轴，上缘压下；
+ * 避免整颗键帽上下平移。
+ */
+.control-face--dpad[data-tilt='up'] {
+  transform-origin: 50% 100%;
+  transform: perspective(520px) rotateX(9deg);
+}
+
+.control-face--dpad[data-tilt='down'] {
+  transform-origin: 50% 0%;
+  transform: perspective(520px) rotateX(-9deg);
+}
+
+.control-face--dpad[data-tilt='left'] {
+  transform-origin: 100% 50%;
+  transform: perspective(520px) rotateY(-9deg);
+}
+
+.control-face--dpad[data-tilt='right'] {
+  transform-origin: 0% 50%;
+  transform: perspective(520px) rotateY(9deg);
+}
+
+/* 按下哪侧，该侧阴影收拢（整体略缩 + 往反方向挪一点） */
+.control-shadow--dpad[data-tilt='up'] {
+  transform: translateY(3%) scale(0.94);
+  opacity: 0.8;
+}
+
+.control-shadow--dpad[data-tilt='down'] {
+  transform: translateY(-2%) scale(0.94);
+  opacity: 0.8;
+}
+
+.control-shadow--dpad[data-tilt='left'] {
+  transform: translate(3%, 1%) scale(0.94);
+  opacity: 0.8;
+}
+
+.control-shadow--dpad[data-tilt='right'] {
+  transform: translate(-3%, 1%) scale(0.94);
+  opacity: 0.8;
+}
+
+.control-face--action,
+.control-face--option,
+.control-shadow--action,
+.control-shadow--option {
+  transition:
+    transform 90ms ease-out,
+    opacity 90ms ease-out;
+}
+
+.control-face--action.is-pressed {
+  transform: translate(4%, 6%) scale(0.92);
+}
+
+.control-shadow--action.is-pressed {
+  transform: translate(2%, 2%) scale(0.92);
+  opacity: 0.45;
+}
+
+.control-face--option.is-pressed {
+  transform: translate(3%, 8%) scale(0.94);
+}
+
+.control-shadow--option.is-pressed {
+  transform: translate(2%, 2%) scale(0.94);
+  opacity: 0.45;
+}

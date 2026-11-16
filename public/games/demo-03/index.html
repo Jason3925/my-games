@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soft Rain</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #0f380f;
+        color: #9bbc0f;
+        font-family: monospace;
+      }
+      main {
+        box-sizing: border-box;
+        height: 100%;
+        padding: 8%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.75rem;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1rem;
+      }
+      p {
+        margin: 0;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        opacity: 0.9;
+      }
+      button {
+        margin: 0.5rem auto 0;
+        padding: 0.4rem 0.7rem;
+        border: 2px solid #9bbc0f;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>SOFT RAIN</h1>
+      <p>Placeholder cartridge.<br />B / ESC to quit.</p>
+      <button type="button" id="quit">QUIT</button>
+    </main>
+    <script>
+      function quit() {
+        parent.postMessage({ type: 'my-games:exit' }, '*')
+      }
+      document.getElementById('quit').addEventListener('click', quit)
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' || e.key === 'x' || e.key === 'X') quit()
+      })
+    </script>
+  </body>
+</html>

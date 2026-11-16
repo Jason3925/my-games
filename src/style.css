@@ -1,6 +1,6 @@
 :root {
-  color: #1a1a1a;
-  background: #e8e4dc;
+  color: #e6e6e6;
+  background: #121521;
   font-family: 'Segoe UI', system-ui, sans-serif;
   line-height: 1.5;
 }
@@ -9,23 +9,69 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100%;
+  background-color: #121521;
+  background-image:
+    radial-gradient(95% 70% at 50% 14%, rgba(110, 138, 255, 0.25) 0%, rgba(20, 24, 40, 0) 62%),
+    radial-gradient(85% 60% at 22% 80%, rgba(255, 72, 170, 0.12) 0%, rgba(255, 72, 170, 0) 65%),
+    radial-gradient(80% 58% at 82% 78%, rgba(95, 240, 220, 0.1) 0%, rgba(95, 240, 220, 0) 62%),
+    linear-gradient(180deg, #2b3046 0%, #1b2032 44%, #121521 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.013) 1px, transparent 1px),
+    radial-gradient(140% 120% at 50% 50%, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.32) 100%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    7px 7px,
+    7px 7px,
+    100% 100%;
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    center;
 }
 
-.shell {
-  max-width: 40rem;
+body {
+  min-height: 100dvh;
+}
+
+body.is-game-focused {
+  background: #000;
+}
+
+.page {
+  max-width: 42rem;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.page--stage {
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 72px 0;
+  overflow: hidden;
 }
 
 .eyebrow {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #666;
+  color: #a8a8a8;
 }
 
 h1 {
@@ -35,13 +81,17 @@ h1 {
 }
 
 h2 {
-  margin: 1.75rem 0 0.75rem;
-  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
 }
 
 .lede {
-  margin: 0;
-  color: #444;
+  margin: 0 0 1rem;
+  color: #b5b5b5;
+}
+
+.lede code {
+  font-size: 0.9em;
 }
 
 .meta {
@@ -49,7 +99,7 @@ h2 {
 }
 
 .meta a {
-  color: #1a5fb4;
+  color: #7eb6ff;
 }
 
 .block-list {
@@ -59,4 +109,115 @@ h2 {
 
 .block-list li {
   margin: 0.35rem 0;
+}
+
+.demo-block {
+  margin-top: 1.25rem;
+}
+
+.demo-block:first-child {
+  margin-top: 0;
+}
+
+.stage-host {
+  width: 100%;
+}
+
+.page--stage .stage-host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.page--demo {
+  max-width: 72rem;
+  padding-bottom: 2.5rem;
+}
+
+.demo-header {
+  margin-bottom: 1.5rem;
+}
+
+.demo-layout {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .demo-layout {
+    grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+  }
+}
+
+.demo-stage-panel {
+  position: sticky;
+  top: 1rem;
+}
+
+.stage-host--demo {
+  display: flex;
+  justify-content: center;
+}
+
+.demo-side {
+  min-width: 0;
+}
+
+.demo-log-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-log-head h2 {
+  margin: 0;
+}
+
+.demo-clear {
+  border: 1px solid #4a4a4a;
+  background: #2a2a2a;
+  color: #ddd;
+  padding: 0.25rem 0.65rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.demo-clear:hover {
+  background: #333;
+}
+
+.demo-focus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.demo-log {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  list-style: none;
+  max-height: 18rem;
+  overflow: auto;
+  background: #141414;
+  border: 1px solid #333;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.demo-log li {
+  margin: 0.15rem 0;
+  color: #c8c8c8;
+}
+
+.demo-nes-sample {
+  max-width: 16rem;
+  aspect-ratio: 21 / 14;
+  border: 1px solid #333;
 }

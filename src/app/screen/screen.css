@@ -1,0 +1,200 @@
+@import 'nes.css/css/nes.min.css';
+@import '@fontsource/press-start-2p/index.css';
+
+.gameboy-screen-slot {
+  pointer-events: none;
+}
+
+.screen-app {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #9cbc0f;
+  color: #0f380f;
+  container-type: size;
+}
+
+.screen-shell {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 6% 5%;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(5px, 5.2cqmin, 11px);
+  line-height: 1.45;
+  image-rendering: pixelated;
+}
+
+.screen-shell.is-flash {
+  filter: brightness(1.35);
+}
+
+.screen-boot,
+.screen-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.screen-boot__title {
+  margin: 0;
+  font-size: 1.05em;
+}
+
+.screen-boot__ver,
+.screen-boot__status,
+.screen-boot__hint {
+  margin: 0.55em 0 0;
+}
+
+.screen-boot__ver,
+.screen-boot__hint {
+  opacity: 0.75;
+  font-size: 0.78em;
+}
+
+.screen-boot__bar {
+  width: 100%;
+  height: 1.1em !important;
+  margin-top: auto;
+  margin-bottom: 0.35em;
+  image-rendering: pixelated;
+}
+
+.screen-boot__hint {
+  margin-top: 0;
+}
+
+.screen-menu__title {
+  margin: 0 0 0.55em;
+  font-size: 0.95em;
+}
+
+.screen-menu__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32%;
+  gap: 0.55em;
+  flex: 1;
+  min-height: 0;
+  align-items: start;
+}
+
+.screen-menu__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  min-height: 0;
+}
+
+.screen-menu__item {
+  margin: 0;
+  padding: 0.2em 0.15em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screen-menu__item.is-active {
+  background: #0f380f;
+  color: #9cbc0f;
+}
+
+.screen-menu__cover {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  border: 0.2em solid #0f380f;
+  background: #7a9a0c;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.screen-menu__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.screen-menu__cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.6em;
+}
+
+.screen-menu__footer {
+  margin: 0.55em 0 0;
+  font-size: 0.72em;
+  opacity: 0.9;
+}
+
+.screen-menu__empty,
+.screen-menu__error {
+  margin: auto 0;
+  text-align: center;
+}
+
+.screen-loading {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.screen-loading__label {
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.screen-loading__title {
+  margin: 0.55em 0 0;
+  word-break: break-word;
+}
+
+.screen-loading__hint {
+  margin: 0.35em 0 0;
+  opacity: 0.75;
+  font-size: 0.78em;
+}
+
+.screen-loading .screen-boot__bar {
+  margin-top: auto;
+}
+
+.screen-frame-host {
+  position: absolute;
+  inset: 0;
+  background: #0f380f;
+}
+
+.screen-game-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0f380f;
+}
+
+/* 把 NES 进度条调成更贴近绿屏的像素感 */
+.screen-app .nes-progress {
+  border-image-repeat: stretch;
+}
+
+.screen-app .nes-progress::-webkit-progress-bar {
+  background-color: #7a9a0c;
+}
+
+.screen-app .nes-progress::-webkit-progress-value {
+  background-color: #0f380f;
+}
+
+.screen-app .nes-progress::-moz-progress-bar {
+  background-color: #0f380f;
+}

@@ -1,0 +1,96 @@
+.gameboy-viewport {
+  /* 默认（Demo 等）：按可用宽度缩放 */
+  width: min(100%, 20rem);
+  margin-inline: auto;
+}
+
+.stage-host--demo .gameboy-viewport {
+  width: min(100%, 22rem);
+}
+
+.page--stage .gameboy-viewport {
+  /* 正式页：上下各留约 72px，机身在剩余高度内居中撑满 */
+  --stage-inset: 72px;
+  width: min(100vw, calc((100dvh - var(--stage-inset) * 2) * 1200 / 1740));
+  height: min(
+    calc(100dvh - var(--stage-inset) * 2),
+    calc(100vw * 1740 / 1200)
+  );
+  margin: 0;
+}
+
+.gameboy-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 1740;
+  user-select: none;
+  transform: translate(0, 0) scale(1);
+  transition: transform 750ms cubic-bezier(0.32, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.page--stage .gameboy-stage {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.gameboy-layer {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  pointer-events: none;
+}
+
+.gameboy-layer[data-layer='screen'] {
+  /* 默认无遮罩；聚焦完成后再激活 */
+  box-shadow: 0 0 0 0 #000;
+}
+
+.gameboy-screen-slot {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.gameboy-viewport.is-focused .gameboy-screen-slot {
+  pointer-events: auto;
+}
+
+.gameboy-focus-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 只在聚焦态允许遮罩过渡；退出聚焦时立即消失，避免短暂黑闪 */
+.gameboy-viewport.is-focused .gameboy-layer[data-layer='screen'] {
+  transition: box-shadow 180ms ease;
+}
+
+.gameboy-viewport.is-focused .gameboy-focus-mask {
+  transition: opacity 180ms ease;
+}
+
+.gameboy-viewport.is-mask-active .gameboy-focus-mask {
+  opacity: 0.72;
+}
+
+.gameboy-viewport.is-mask-active .gameboy-layer[data-layer='screen'] {
+  box-shadow: 0 0 0 100vmax #000;
+}
+
+.gameboy-content-bounds {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 64, 64, 0.85);
+  background: rgba(255, 64, 64, 0.12);
+  pointer-events: none;
+  z-index: 100;
+}

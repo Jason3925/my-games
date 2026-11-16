@@ -1,11 +1,25 @@
 {
   "games": [
     {
-      "id": "demo-01",
-      "title": "示例游戏",
-      "cover": "/assets/covers/demo-01.png",
-      "entry": "/games/demo-01/index.html",
-      "description": "占位元数据，步骤 0 尚未接入真游戏"
+      "id": "game-1",
+      "title": "Play With Fire",
+      "cover": "/games/game-1/index.png",
+      "entry": "/games/game-1/index.html",
+      "description": "Godot 真游戏（用户提供）"
+    },
+    {
+      "id": "demo-02",
+      "title": "Block Rush",
+      "cover": "/assets/covers/demo-02.png",
+      "entry": "/games/demo-02/index.html",
+      "description": "占位游戏 B"
+    },
+    {
+      "id": "demo-03",
+      "title": "Soft Rain",
+      "cover": "/assets/covers/demo-03.png",
+      "entry": "/games/demo-03/index.html",
+      "description": "占位游戏 C"
     }
   ]
 }

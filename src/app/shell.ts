@@ -1,11 +1,41 @@
-/** 正式入口壳：步骤 0 仅占位，后续在此挂载状态机与 Gameboy 舞台。 */
+import { mountGameboyStage } from '../components/GameboyStage'
+import { createPlaySession } from './playSession'
+import { mountScreenApp } from './screen/ScreenApp'
+
+/** 正式入口：全景机身 + boot/menu + zoom/iframe 游玩环。 */
 export function mountApp(root: HTMLElement): void {
   root.innerHTML = `
-    <main class="shell">
-      <p class="eyebrow">my-games</p>
-      <h1>像素掌机展柜</h1>
-      <p class="lede">工程骨架已就绪。Gameboy 合成与交互将在后续步骤接入。</p>
-      <p class="meta"><a href="/demo.html">打开 Demo 实验室 →</a></p>
+    <main class="page page--stage">
+      <div class="stage-host" data-host="gameboy"></div>
     </main>
   `
+
+  const host = root.querySelector<HTMLElement>('[data-host="gameboy"]')
+  if (!host) {
+    throw new Error('stage host not found')
+  }
+
+  const screenRoot = document.createElement('div')
+  let session: ReturnType<typeof createPlaySession> | null = null
+
+  const screen = mountScreenApp(screenRoot, {
+    onRequestStart(game) {
+      session?.start(game)
+    },
+    onRequestExit() {
+      session?.exit()
+    },
+    onRequestRetry() {
+      session?.retry()
+    },
+  })
+
+  const stage = mountGameboyStage(host, {
+    interactive: true,
+    bindKeyboard: true,
+    screenContent: screenRoot,
+    onControl: (event) => screen.handleControl(event),
+  })
+
+  session = createPlaySession({ stage, screen })
 }
